@@ -1,12 +1,12 @@
 import categoriesData from './category-data';
-import Category from './category.component';
+import CategoryItem from './category.component.jsx';
 import './styles/categories.styles.scss';
 
 const Categories = () => {
     return (
     <div className="categories-container">
         {categoriesData.map((category) => (
-            <Category category={category} />
+            <CategoryItem category={category} key={category.id} />
         ))}
     </div>
     )

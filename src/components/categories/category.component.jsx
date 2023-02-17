@@ -1,20 +1,22 @@
 import './styles/category.styles.scss';
 
-const Category = ({ id, url, title }) => {
+const CategoryItem = ({category}) => {
+    const { id, imageUrl, title } = category;
     return (
         <div className='category-container' key={id}>
             <div
                 className='background-image'
                 style={{
-                backgroundImage: `url${url}`
+                    backgroundImage: `url(${imageUrl})`
                 }}
             />
             <div className='category-body-container'>
-            <h2>{title}</h2>
-            <p>Shop Now</p>
+                <h2>{title}</h2>
+                <p>Shop Now</p>
             </div>
         </div>
     );
 }
 
-export default Category;
+
+export default CategoryItem;
