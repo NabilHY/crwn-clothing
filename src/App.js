@@ -7,8 +7,8 @@ import {
 
 import Categories from './components/categories/categories.component';
 import './App.css';
-import { Shop } from './routes/shop.component';
-import RootLayout from './layouts/rootLayout.component';
+import { Shop } from './routes/shop/shop.component';
+import RootLayout from './layouts/RootLayout.component';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
