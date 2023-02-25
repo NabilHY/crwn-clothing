@@ -1,7 +1,17 @@
 import React from 'react'
+import { signInWithGooglePopup } from '../../utils/firebase/firebase.utils';
 
 export const SignIn = () => {
+  const logGoogleUser = async () => {
+    const response = await signInWithGooglePopup();
+    console.log(response);
+  }
   return (
-    <div>SignIn To your app</div>
+    <div>
+      <h1>Sign In</h1>
+      <button onClick={logGoogleUser}>
+        Sign in
+      </button>
+    </div>
   )
 }
