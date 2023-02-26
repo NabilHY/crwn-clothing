@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { createUserDocumentFromAuth } from '../../utils/firebase/firebase.utils';
+import { createAuthUserWithEmailAndPassword } from '../../utils/firebase/firebase.utils';
 
 const defaultFormFields = {
   displayName: '',
@@ -8,9 +10,20 @@ const defaultFormFields = {
 }
 
 export const SignUpForm = () => {
-
   
   const [formFields, setFormFields] = useState(defaultFormFields)
+  
+
+  useEffect(() => {
+    console.log(formFields)
+  }, [formFields])
+
+    const { 
+      displayName,
+      email,
+      password,
+      password_confirmation: passwordConfirmation
+    } = formFields;
   
   const handleChange = (event) => {
     const { value, name } = event.target;
@@ -20,18 +33,21 @@ export const SignUpForm = () => {
       })
   }
 
-  const handleSubmit = () => {
-
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (password !== passwordConfirmation) {
+      throw new Error("Passwords not matching!");
+    } else {
+      const response = await createAuthUserWithEmailAndPassword(email, password);
+      console.log(response);
+      const { user } = response;
+      const userDocRef = await createUserDocumentFromAuth(user);
+      return userDocRef;
+    }
   }
 
-  const { displayName,
-    email,
-    password,
-    password_confirmation: passwordConfirmation
-  } = formFields;
-
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <label>Display Name</label>
       <input
         type="text"
@@ -64,7 +80,7 @@ export const SignUpForm = () => {
         onChange={handleChange}
         required
       />
-      <button type='submit' onSubmit={handleSubmit} >
+      <button type='submit'>
           Sign Up
       </button>
     </form>
