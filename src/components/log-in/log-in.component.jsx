@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FormInput } from "../form-input/form-input.component";
 import { Button } from '../button/button.component';
+import { signInUserWithEmailAndPassword } from '../../utils/firebase/firebase.utils';
+import { retrieveUserDocumentFromAuth } from '../../utils/firebase/firebase.utils'; 
 
 const defaultCredentials = {
     email: '',
@@ -8,11 +10,15 @@ const defaultCredentials = {
 }
 
 export const LogIn = () => {
-    
+
     const [credentials, setCredentials] = useState(defaultCredentials)
+    
+    useEffect(() => {
+        console.log(credentials);
+    }, [credentials])
 
     const handleChange = (e) => {
-        const { name, value } = e.target.value;
+        const { name, value } = e.target;
         setCredentials({
             ...credentials,
             [name]: value,
@@ -21,8 +27,14 @@ export const LogIn = () => {
 
     const { email, password } = credentials;
 
-    const handleSubmit = () => {
-
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const response = await signInUserWithEmailAndPassword(email, password);
+        setCredentials(defaultCredentials);
+        const { user } = response;
+        const { uid } = user;
+        const userSnapshot = await retrieveUserDocumentFromAuth(uid)
+        console.log(userSnapshot);
     }
   
     return (
