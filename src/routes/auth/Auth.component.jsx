@@ -7,7 +7,7 @@ import { SignUpForm } from '../../components/sign-up-form/SignUp.component';
 import { LogIn } from '../../components/log-in/log-in.component';
 
 
-export const SignIn = () => {
+export const Auth = () => {
 
 
   const logGoogleUser = async () => {
@@ -19,7 +19,7 @@ export const SignIn = () => {
     <div>
       <h1>Sign In</h1>
       <LogIn />
-      <Button onClick={logGoogleUser} buttonType='google'>
+      <Button type='button' onClick={logGoogleUser} buttonType='google'>
         Sign in With Google
       </Button>
       <h2>Don't have an account?</h2>
