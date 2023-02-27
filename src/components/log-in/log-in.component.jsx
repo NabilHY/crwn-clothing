@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { FormInput } from "../form-input/form-input.component";
 import { Button } from '../button/button.component';
 import { signInUserWithEmailAndPassword } from '../../utils/firebase/firebase.utils';
@@ -12,10 +12,6 @@ const defaultCredentials = {
 export const LogIn = () => {
 
     const [credentials, setCredentials] = useState(defaultCredentials)
-    
-    useEffect(() => {
-        console.log(credentials);
-    }, [credentials])
 
     const handleChange = (e) => {
         const { name, value } = e.target;
