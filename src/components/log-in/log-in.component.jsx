@@ -36,7 +36,7 @@ export const LogIn = ({signIn}) => {
         console.log(userSnapshot);
     }
 
-    const { setCurrentUser } = useContext(UserContext)
+    const { setCurrentUser } = useContext(UserContext);
   
     return (
         <div>
