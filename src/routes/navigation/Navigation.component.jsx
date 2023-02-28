@@ -6,16 +6,17 @@ import './navigation.styles.scss';
 
 export const Navigation = () => {
   const { currentUser } = useContext(UserContext); 
+  console.log(currentUser);
   return (
-      <div className='navigation'>
-          <Link className='logo-container' to='/'>
-            <CrwnSvg />
-          </Link>
-          <div className="nav-links-container">
-            <NavLink className='nav-link' to='/'>Categories</NavLink>
-            <NavLink className='nav-link' to='shop'>Shop</NavLink>
-            <NavLink className='nav-link' to='auth'>Sign In</NavLink>
-          </div>
+    <div className='navigation'>
+        <Link className='logo-container' to='/'>
+           <CrwnSvg />
+        </Link>
+        <div className="nav-links-container">
+          <NavLink className='nav-link' to='/'>Categories</NavLink>
+          <NavLink className='nav-link' to='shop'>Shop</NavLink>
+          <NavLink className='nav-link' to='auth'>Sign In</NavLink>
         </div>
+    </div>
   )
 }
