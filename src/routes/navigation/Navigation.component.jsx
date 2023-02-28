@@ -5,8 +5,7 @@ import { ReactComponent as CrwnSvg } from '../../assets/crown.svg';
 import './navigation.styles.scss';
 
 export const Navigation = () => {
-  const { currentUser } = useContext(UserContext);
-  console.log(currentUser)
+  const { currentUser } = useContext(UserContext); 
   return (
       <div className='navigation'>
           <Link className='logo-container' to='/'>
