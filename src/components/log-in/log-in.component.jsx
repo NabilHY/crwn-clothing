@@ -13,6 +13,8 @@ const defaultCredentials = {
 export const LogIn = ({signIn}) => {
 
     const [credentials, setCredentials] = useState(defaultCredentials)
+    
+    const { email, password } = credentials;
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -22,12 +24,10 @@ export const LogIn = ({signIn}) => {
         })
     }
 
-    const { email, password } = credentials;
-
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await signInUserWithEmailAndPassword(email, password);
         setCredentials(defaultCredentials);
+        const response = await signInUserWithEmailAndPassword(email, password);
         const { user } = response;
         const { uid } = user;
         const userSnapshot = await retrieveUserDocumentFromAuth(uid)
