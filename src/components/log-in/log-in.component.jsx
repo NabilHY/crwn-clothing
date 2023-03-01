@@ -1,9 +1,8 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import { FormInput } from "../form-input/form-input.component";
 import { Button } from '../button/button.component';
 import { signInUserWithEmailAndPassword } from '../../utils/firebase/firebase.utils';
 import { retrieveUserDocumentFromAuth } from '../../utils/firebase/firebase.utils'; 
-import { UserContext } from '../../contexts/user.context';
 import './log-in.styles.scss';
 
 const defaultCredentials = {
@@ -30,13 +29,10 @@ export const LogIn = ({signIn}) => {
         setCredentials(defaultCredentials);
         const response = await signInUserWithEmailAndPassword(email, password);
         const { user } = response;
-        setCurrentUser(user);
         const { uid } = user;
         const userSnapshot = await retrieveUserDocumentFromAuth(uid)
         console.log(userSnapshot);
     }
-
-    const { setCurrentUser } = useContext(UserContext);
   
     return (
         <div>

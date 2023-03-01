@@ -7,11 +7,10 @@ import './navigation.styles.scss';
 
 export const Navigation = () => {
   
-  const { currentUser, setCurrentUser } = useContext(UserContext); 
+  const { currentUser } = useContext(UserContext); 
 
   const handleSignOut = async () => {
     await logOutUser();
-    setCurrentUser(null);
   }
 
   // console.log(currentUser);
