@@ -20,9 +20,10 @@ export const UserProvider = ({ children }) => {
     const value = { currentUser, setCurrentUser };
 
     useEffect(() => {
-        onAuthStateChangedListener((user) => {
+        const unsubscribe = onAuthStateChangedListener((user) => {
             console.log(user)
         });
+        return unsubscribe;
     }, [])
     
     //returns user context.provider
