@@ -90,6 +90,10 @@ export const logOutUser = async () => {
   return signOut(auth);
 }
 
-export const onAuthStateChangedListener = () => {
 
+// declare authStateChange listener functino
+// to run a callback function eveytime the state of out auth singleton
+//change and updates
+export const onAuthStateChangedListener = (callback) => {
+  onAuthStateChanged(auth, callback)
 }
