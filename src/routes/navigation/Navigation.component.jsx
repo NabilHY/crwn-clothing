@@ -8,7 +8,9 @@ import './navigation.styles.scss';
 
 export const Navigation = () => {
   
-  const { currentUser } = useContext(UserContext); 
+  const { currentUser } = useContext(UserContext);
+
+   
 
   const handleSignOut = async () => {
     await logOutUser();

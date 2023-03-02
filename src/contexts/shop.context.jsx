@@ -11,6 +11,5 @@ export const ShopProvider = ({ children }) => {
         return setShopItems(SHOP_ITEMS);
     }, []);
     const value = { shopItems }
-    console.log(shopItems);
     return <ShopContext.Provider value={value}>{children}</ShopContext.Provider>
 }
