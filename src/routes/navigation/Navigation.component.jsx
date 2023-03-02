@@ -3,6 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { UserContext } from '../../contexts/user.context';
 import { ReactComponent as CrwnSvg } from '../../assets/crown.svg';
 import { logOutUser } from '../../utils/firebase/firebase.utils';
+import { CartIcon } from '../../components/cart-icon/cart-icon.component';
 import './navigation.styles.scss';
 
 export const Navigation = () => {
@@ -25,6 +26,7 @@ export const Navigation = () => {
           {
             currentUser ? <span className='nav-link' onClick={handleSignOut}>Sign Out</span> :  <NavLink className='nav-link' to='auth'>Sign In</NavLink>
           }
+          <CartIcon />
         </div>
     </div>
   )

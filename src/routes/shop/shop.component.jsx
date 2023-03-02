@@ -4,6 +4,7 @@ import { ShopContext } from '../../contexts/shop.context';
 import { Product } from '../../components/product/product.component';
 import './shop.styles.scss';
 
+
 export const Shop = () => {
   const { shopItems } = useContext(ShopContext);
   console.log(shopItems);
