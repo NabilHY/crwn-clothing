@@ -15,8 +15,6 @@ export const Navigation = () => {
   const handleSignOut = async () => {
     await logOutUser();
   }
-
-  // console.log(currentUser);
   return (
     <div className='navigation'>
         <Link className='logo-container' to='/'>
