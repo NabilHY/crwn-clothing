@@ -1,11 +1,19 @@
 import { useContext } from "react";
 import { ShopContext } from "../../contexts/shop.context";
+import { CheckoutItem } from "../../components/checkout-item/checkout-item.component";
 
 export const Checkout = () => {
 
-    // const [shopItems, setShopItems] = useContext(ShopContext);
+    const { shopItems, setShopItems } = useContext(ShopContext);
 
     return (
-        <div>Checkout Compenent</div>
+        <div className='checkout-container'>
+            {
+                shopItems &&
+                shopItems.map((item) => {
+                    <CheckoutItem item={item} />
+                })
+            }
+        </div>
     )
 }
