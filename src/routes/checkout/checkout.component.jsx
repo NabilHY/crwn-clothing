@@ -9,8 +9,22 @@ export const Checkout = () => {
     const { shopItems, setShopItems } = useContext(ShopContext);
 
     return (
-        <Table>
-            
+        <Table striped bordered hover>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            {
+                shopItems.map((item) => {
+                    return (
+                        <CheckoutItem item={item} />
+                    )
+                })
+            }
         </Table>
     )
 }
