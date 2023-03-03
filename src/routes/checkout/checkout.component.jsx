@@ -11,7 +11,9 @@ export const Checkout = () => {
             {
                 shopItems &&
                 shopItems.map((item) => {
-                    <CheckoutItem item={item} />
+                    return (
+                        <CheckoutItem item={item} />
+                    )
                 })
             }
         </div>
