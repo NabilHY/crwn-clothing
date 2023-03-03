@@ -8,11 +8,12 @@ export const CartIcon = () => {
     
     const { cartItems, toggled, setToggled } = useContext(CartContext)
     const [itemCount, setItemCount] = useState(0);
+    
     useEffect(() => {
-        setItemCount(
-            cartItems.length
-            )   
-        }, [cartItems])
+        const newCartCount = cartItems.reduce((total, cartItem) => total + cartItem.quantity, 0);
+    setItemCount(
+        newCartCount
+    )}, [cartItems]);
         
     const toogleHandler = () => {
         !toggled ? setToggled(true) : setToggled(false);
