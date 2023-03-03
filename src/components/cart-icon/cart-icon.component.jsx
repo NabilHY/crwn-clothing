@@ -6,13 +6,12 @@ import './cart-icon.styles.scss';
 
 export const CartIcon = () => {
     
-    const { cartItems } = useContext(CartContext)
-    const [toggled, setToggled] = useState(false);
+    const { cartItems, toggled, setToggled } = useContext(CartContext)
     const [itemCount, setItemCount] = useState(0);
     useEffect(() => {
         setItemCount(
             cartItems.length
-            )
+            )   
         }, [cartItems])
         
     const toogleHandler = () => {

@@ -4,14 +4,11 @@ import { Button } from '../button/button.component';
 import './product.styles.scss';
 
 export const Product = ({product}) => {
-  const {  cartItems, setCartItems } = useContext(CartContext);
+  const { addItemToCart } = useContext(CartContext);
   const { id, name, imageUrl, price } = product;
 
   const handleClick = () => {
-    setCartItems([
-      ...cartItems,
-      product
-    ])
+    addItemToCart(product);
   }
 
     return (
