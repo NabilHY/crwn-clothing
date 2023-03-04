@@ -5,7 +5,9 @@ export const CartContext =  createContext({
     cartItems: [],
     setCartItems: () => {},
     toggled: false,
-    setToggled: () => {},
+    setToggled: () => { },
+    increaseProductQuantity: () => {},
+    decreaseProductQuantity: () => {},
 })
 
 const addCartItem = (cartItems, productToAdd) => {
@@ -21,6 +23,22 @@ const addCartItem = (cartItems, productToAdd) => {
     return [...cartItems, { ...productToAdd, quantity: 1 }];
 }
 
+const increaseProductQunatity = (cartItems, productToIncrement, operation) => {
+    if (operation === 'increment') {
+        return cartItems.map((item) => 
+            item.id === productToIncrement.id
+                ? { ...item, quantity: item.quantity + 1 }
+                : item
+        )
+    } else (operation === 'decrement') {
+        return cartItems.map((item) =>
+            item.id === productToIncrement.id
+                ? {...item, quantity: item.quantity - 1 }
+                : item
+        )
+    }
+}
+
 export const CartProvider = ({children}) => {
     const [cartItems, setCartItems] = useState([]);
     const [toggled, setToggled] = useState(false);
@@ -28,6 +46,8 @@ export const CartProvider = ({children}) => {
     const addItemToCart = (product) => {
         setCartItems(addCartItem(cartItems, product));
     }
+
+    
 
     const value = { cartItems, setCartItems, toggled, setToggled, addItemToCart};
     return (
