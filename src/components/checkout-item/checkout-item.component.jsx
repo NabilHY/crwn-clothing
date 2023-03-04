@@ -4,7 +4,7 @@ import { RxCross2 } from 'react-icons/rx';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
 export const CheckoutItem = ({ item }) => {
-    const { updateQuantity } = useContext(CartContext);
+    const { updateQuantity, removeProductFromCart } = useContext(CartContext);
     const { name, imageUrl, price, quantity } = item;
 
     const updateHandler = (e) => {
@@ -14,7 +14,7 @@ export const CheckoutItem = ({ item }) => {
     }
 
     const removeHandler = () => {
-        
+        removeProductFromCart(item)
     }
 
     return (

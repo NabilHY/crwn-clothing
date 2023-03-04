@@ -38,7 +38,7 @@ const settingProductQuantity = (cartItems, product, operation) => {
     }
 }
 
-const removeProductFromCartHandler = (cartItems, product) => {
+const removeProductFromCartHandler = (cartItems, product) => { 
     return cartItems.filter(item => item.id !== product.id);
 }
 
@@ -55,11 +55,11 @@ export const CartProvider = ({children}) => {
     }
 
     const removeProductFromCart = (product) => {
-        setCartItems(removeProductFromCartHandler(product))
+        setCartItems(removeProductFromCartHandler(cartItems, product))
     }
     
 
-    const value = { cartItems, setCartItems, toggled, setToggled, addItemToCart, updateQuantity};
+    const value = { cartItems, setCartItems, toggled, setToggled, addItemToCart, updateQuantity, removeProductFromCart};
     return (
         <CartContext.Provider value={value}>{children}</CartContext.Provider>
     )
