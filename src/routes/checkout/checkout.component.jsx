@@ -17,6 +17,7 @@ export const Checkout = () => {
                             <tr>
                                 <th>Product</th>
                                 <th>Description</th>
+                                <th>Quantity</th>
                                 <th>Price</th>
                                 <th>Remove</th>
                             </tr>
@@ -27,7 +28,7 @@ export const Checkout = () => {
                                     return (
                                         <CheckoutItem key={item.id} item={item} />
                                     )
-                            })
+                                })
                             }
                         </tbody>
                     </Table>
