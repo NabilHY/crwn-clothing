@@ -7,11 +7,15 @@ export const CheckoutItem = ({ item }) => {
     const { updateQuantity } = useContext(CartContext);
     const { name, imageUrl, price, quantity } = item;
 
-    const handleClick = (e) => {
-        e.target.className['baseVal'] === 'increment'
-            ? updateQuantity(item, 'increment')
-            : updateQuantity(item, 'decrement')
-        }
+    const updateHandler = (e) => {
+    e.target.className['baseVal'] === 'increment'
+        ? updateQuantity(item, 'increment')
+        : updateQuantity(item, 'decrement')
+    }
+
+    const removeHandler = () => {
+        
+    }
 
     return (
         <tr>
@@ -19,15 +23,15 @@ export const CheckoutItem = ({ item }) => {
             <td>{name}</td>
             <td>
                 <div className='quantity-container'>
-                    <IoIosArrowBack className='decrement' onClick={handleClick} />
+                    <IoIosArrowBack className='decrement' onClick={updateHandler} />
                     <span>
                         {quantity}
                     </span>
-                    <IoIosArrowForward className='increment' onClick={handleClick} /> 
+                    <IoIosArrowForward className='increment' onClick={updateHandler} /> 
                 </div>
             </td>
             <td>{price}</td>
-            <td><RxCross2 /></td>
+            <td><RxCross2 onClick={removeHandler} /></td>
         </tr>
     )
 }

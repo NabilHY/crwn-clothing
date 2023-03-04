@@ -1,17 +1,16 @@
 import { createContext, useState } from 'react';
 
-
 export const CartContext =  createContext({
     cartItems: [],
     setCartItems: () => {},
     toggled: false,
-    setToggled: () => { },
+    setToggled: () => {},
     increaseProductQuantity: () => {},
     decreaseProductQuantity: () => {},
+    removeProductFromCart: () => {},
 })
 
 const addCartItem = (cartItems, productToAdd) => {
-
     const exists = cartItems.find(item => item.id === productToAdd.id);
     if (exists) {
         return cartItems.map((cartItem) =>
@@ -23,7 +22,7 @@ const addCartItem = (cartItems, productToAdd) => {
     return [...cartItems, { ...productToAdd, quantity: 1 }];
 }
 
-const settingProductQunatity = (cartItems, product, operation) => {
+const settingProductQuantity = (cartItems, product, operation) => {
     if (operation === 'increment') {
         return cartItems.map((item) => 
             item.id === product.id
@@ -39,6 +38,10 @@ const settingProductQunatity = (cartItems, product, operation) => {
     }
 }
 
+const removeProductFromCartHandler = (cartItems, product) => {
+    return cartItems.filter(item => item.id !== product.id);
+}
+
 export const CartProvider = ({children}) => {
     const [cartItems, setCartItems] = useState([]);
     const [toggled, setToggled] = useState(false);
@@ -48,7 +51,11 @@ export const CartProvider = ({children}) => {
     }
 
     const updateQuantity = (product, operation) => {
-        setCartItems(settingProductQunatity(cartItems, product, operation))
+        setCartItems(settingProductQuantity(cartItems, product, operation))
+    }
+
+    const removeProductFromCart = (product) => {
+        setCartItems(removeProductFromCartHandler(product))
     }
     
 
