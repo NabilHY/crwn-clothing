@@ -23,18 +23,18 @@ const addCartItem = (cartItems, productToAdd) => {
     return [...cartItems, { ...productToAdd, quantity: 1 }];
 }
 
-const increaseProductQunatity = (cartItems, productToIncrement, operation) => {
+const settingProductQunatity = (cartItems, product, operation) => {
     if (operation === 'increment') {
         return cartItems.map((item) => 
-            item.id === productToIncrement.id
-                ? { ...item, quantity: item.quantity + 1 }
-                : item
+            item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
         )
-    } else (operation === 'decrement') {
-        return cartItems.map((item) =>
-            item.id === productToIncrement.id
-                ? {...item, quantity: item.quantity - 1 }
-                : item
+    } else {
+        return cartItems.map((item) => 
+            item.id === product.id && item.quantity
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
         )
     }
 }
@@ -47,9 +47,12 @@ export const CartProvider = ({children}) => {
         setCartItems(addCartItem(cartItems, product));
     }
 
+    const updateQuantity = (product, operation) => {
+        setCartItems(settingProductQunatity(cartItems, product, operation))
+    }
     
 
-    const value = { cartItems, setCartItems, toggled, setToggled, addItemToCart};
+    const value = { cartItems, setCartItems, toggled, setToggled, addItemToCart, updateQuantity};
     return (
         <CartContext.Provider value={value}>{children}</CartContext.Provider>
     )
