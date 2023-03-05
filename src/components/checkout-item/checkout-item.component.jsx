@@ -30,7 +30,7 @@ export const CheckoutItem = ({ item }) => {
                     <IoIosArrowForward className='increment' onClick={updateHandler} /> 
                 </div>
             </td>
-            <td>{price}</td>
+            <td>{price * quantity} $</td>
             <td><RxCross2 onClick={removeHandler} /></td>
         </tr>
     )

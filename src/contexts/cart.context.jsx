@@ -8,6 +8,8 @@ export const CartContext =  createContext({
     increaseProductQuantity: () => {},
     decreaseProductQuantity: () => {},
     removeProductFromCart: () => {},
+    totalPrice: '',
+    sumPrices: () => {},
 })
 
 const addCartItem = (cartItems, productToAdd) => {
@@ -42,9 +44,12 @@ const removeProductFromCartHandler = (cartItems, product) => {
     return cartItems.filter(item => item.id !== product.id);
 }
 
+const sumPrices = (cartItems) => cartItems.reduce((total, item) => total + (item.quantity * item.price), 0)
+
 export const CartProvider = ({children}) => {
     const [cartItems, setCartItems] = useState([]);
     const [toggled, setToggled] = useState(false);
+    const [totalPrice, setTotalPrice] = useState(0);
 
     const addItemToCart = (product) => {
         setCartItems(addCartItem(cartItems, product));
@@ -57,11 +62,26 @@ export const CartProvider = ({children}) => {
     const removeProductFromCart = (product) => {
         setCartItems(removeProductFromCartHandler(cartItems, product))
     }
-    
 
-    const value = { cartItems, setCartItems, toggled, setToggled, addItemToCart, updateQuantity, removeProductFromCart};
+    const totalPurchasePrice = () => {
+        setTotalPrice(sumPrices(cartItems))
+    }
+
+    const value = {
+        cartItems,
+        setCartItems,
+        toggled,
+        setToggled,
+        addItemToCart,
+        updateQuantity,
+        removeProductFromCart,
+        totalPrice,
+        totalPurchasePrice,
+    };
+    
     return (
         <CartContext.Provider value={value}>{children}</CartContext.Provider>
     )
 }
+
 
