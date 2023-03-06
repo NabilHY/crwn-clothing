@@ -1,0 +1,41 @@
+  td img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+  }
+  
+  td:nth-child(2) {
+    font-weight: bold;
+  }
+  
+  .quantity-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .decrement {
+    cursor: pointer;
+    font-size: 20px;
+  }
+
+  .quantity-container span {
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
+  .increment {
+    cursor: pointer;
+    font-size: 20px;
+  }
+
+  td:nth-child(4) {
+    font-weight: bold;
+    color: green;
+  }
+  
+  td:nth-child(5) {
+    cursor: pointer;
+    font-size: 20px;
+    color: red;
+  }
