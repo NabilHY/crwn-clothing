@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { CartContext } from "../../contexts/cart.context";
 import { RxCross2 } from 'react-icons/rx';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
+import './checkout-item.styles.scss';
 
 export const CheckoutItem = ({ item }) => {
     const { updateQuantity, removeProductFromCart } = useContext(CartContext);

@@ -2,6 +2,7 @@ import { Fragment, useContext, useEffect } from "react";
 import Table from 'react-bootstrap/Table';
 import { CartContext } from "../../contexts/cart.context";
 import { CheckoutItem } from "../../components/checkout-item/checkout-item.component";
+import './checkout.styles.scss';
 
 
 export const Checkout = () => {
@@ -17,7 +18,10 @@ export const Checkout = () => {
         <div className="checkout-container">
             {
                 cartItems.length !== 0 ? (
-                    <Fragment> 
+                    <div className='products-container'> 
+                        <p className='empty-message'>
+                            Total Purchases: {totalPrice} $
+                        </p>
                         <Table striped bordered hover>
                             <thead>
                                 <tr>
@@ -38,12 +42,9 @@ export const Checkout = () => {
                                 }
                             </tbody>
                         </Table>
-                        <div>
-                            Total Purchases: {totalPrice} $
-                        </div>
-                    </Fragment>
+                    </div>
                 ) : (
-                    <p>Your Cart is empty</p>
+                    <p className='cart-empty-message'>Your Cart is empty</p>
                 )
             }
         </div>
