@@ -8,6 +8,8 @@ import './checkout.styles.scss';
 export const Checkout = () => {
 
     const { cartItems, totalPrice, totalPurchasePrice } = useContext(CartContext);
+
+    const filteredCartItems = cartItems.filter((item) => item.quantity !== 0);
     
     useEffect(() => {
         const unsubscribe = totalPurchasePrice();
@@ -17,7 +19,7 @@ export const Checkout = () => {
     return (
         <div className="checkout-container">
             {
-                cartItems.length !== 0 ? (
+                filteredCartItems.length !== 0 ? (
                     <div className='products-container'> 
                         <p className='empty-message'>
                             Total Purchases: {totalPrice} $
@@ -34,7 +36,7 @@ export const Checkout = () => {
                             </thead>
                             <tbody>
                                 {
-                                    cartItems.map((item) => {
+                                    filteredCartItems.map((item) => {
                                         return (
                                             <CheckoutItem key={item.id} item={item} />
                                         )

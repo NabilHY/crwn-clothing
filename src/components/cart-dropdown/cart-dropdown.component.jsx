@@ -7,6 +7,9 @@ import "./cart-dropdown.styles.scss";
 
 export const CartDropdown = () => {
   const { cartItems } = useContext(CartContext);
+
+  const filteredCartItems = cartItems.filter((item) => item.quantity !== 0);
+
   let navigate = useNavigate();
 
   const routeChange = () => {
@@ -17,11 +20,11 @@ export const CartDropdown = () => {
   return (
     <div className="cart-dropdown-container">
       {
-        cartItems.length !== 0 ? (
+        filteredCartItems.length !== 0 ? (
         <Fragment>
           <div>
-            {cartItems &&
-              cartItems.map((item) => {
+            {filteredCartItems &&
+              filteredCartItems.map((item) => {
                 return <CartDropdownItem key={item.id} item={item} />;
               })}
           </div>
