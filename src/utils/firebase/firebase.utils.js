@@ -14,7 +14,9 @@ import {
   getFirestore,
   doc, //retrive document instance
   getDoc, // getting doc data
-  setDoc // setting doc data
+  setDoc, // setting doc data
+  collection,
+  writeBatch,
 } from 'firebase/firestore';
 
 const firebaseConfig = {
@@ -39,6 +41,11 @@ export const auth = getAuth();
 export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
 
 export const db = getFirestore();
+
+export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
+  const collectionRef = collection(db, collectionKey);
+  
+}
 
 export const createUserDocumentFromAuth = async (userAuth, additionalInfo = {}) => {
   if (!userAuth) return;
