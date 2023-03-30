@@ -3,20 +3,20 @@ import { getCategoriesAndDocuments } from '../utils/firebase/firebase.utils.js';
 
 
 export const ShopContext = createContext({
-    shopItems: [],
+    shopCategories: [],
 })
 
 export const ShopProvider = ({ children }) => {
-    const [shopItems, setShopItems] = useState([]);
+    const [shopCategories, setShopCategories] = useState({});
 
     useEffect(() => {
         const getCategoriesMap = async () => {
             const categoryMap = await getCategoriesAndDocuments();
-            console.log(categoryMap);
+            setShopCategories(categoryMap);
         }
         getCategoriesMap();
     }, []);
  
-    const value = { shopItems }
+    const value = { shopCategories }
     return <ShopContext.Provider value={value}>{children}</ShopContext.Provider>
 }
