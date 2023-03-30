@@ -1,7 +1,7 @@
+import React from 'react'
 import { Product } from '../product/product.component';
 import './category-preview.styles.scss';
 
-import React from 'react'
 
 const CategoryPreview = ({title, items}) => {
   return (  
